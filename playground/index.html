@@ -4,6 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <script src="./client.min.js"></script>
   </head>
-  <body></body>
+  <body>
+    <script>
+      if (maycurDevtools) {
+        const { initContainer, EDGE_POSITION, IDENTIFIERS } = maycurDevtools
+        const IoC = initContainer()
+        const instance = IoC.get(IDENTIFIERS.Workbench)
+        instance.initialize({
+          container: document.body,
+          initialPosition: EDGE_POSITION.BOTTOM,
+          panelSize: 30,
+        })
+      }
+    </script>
+  </body>
 </html>

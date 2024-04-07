@@ -28,5 +28,5 @@
 //   ws.send(JSON.stringify({ action: 'exec-cmd', cmd: command }))
 // }
 
-export { IoC } from './IoC'
+export { initContainer } from './IoC'
 export { EDGE_POSITION, IDENTIFIERS } from './components/base/constants'

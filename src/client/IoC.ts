@@ -7,11 +7,19 @@ import { FrameContent } from './components/frame/frameContent'
 import { IDENTIFIERS } from './components/base/constants'
 import { Workbench } from './components/workbench/workbench'
 
-export const IoC = new Container({ skipBaseClassChecks: true })
-IoC.bind<DraggableService>(IDENTIFIERS.DraggableService)
-  .to(DraggableService)
-  .inSingletonScope()
-IoC.bind<Panel>(IDENTIFIERS.Panel).to(Panel)
-IoC.bind<Frame>(IDENTIFIERS.Frame).to(Frame)
-IoC.bind<FrameContent>(IDENTIFIERS.FrameContent).to(FrameContent)
-IoC.bind<Workbench>(IDENTIFIERS.Workbench).to(Workbench)
+let IoC: Container
+
+export function initContainer() {
+  if (IoC) {
+    return IoC
+  }
+  IoC = new Container({ skipBaseClassChecks: true })
+  IoC.bind<DraggableService>(IDENTIFIERS.DraggableService)
+    .to(DraggableService)
+    .inSingletonScope()
+  IoC.bind<Panel>(IDENTIFIERS.Panel).to(Panel)
+  IoC.bind<Frame>(IDENTIFIERS.Frame).to(Frame)
+  IoC.bind<FrameContent>(IDENTIFIERS.FrameContent).to(FrameContent)
+  IoC.bind<Workbench>(IDENTIFIERS.Workbench).to(Workbench)
+  return IoC
+}

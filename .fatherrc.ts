@@ -14,7 +14,7 @@ export default defineConfig({
   },
   // Bundle 构建模式 transformer=babel
   umd: {
-    name: 'fatherTemplate',
+    name: 'maycurDevtools',
     entry: {
       'src/client': {},
       'src/server': {
