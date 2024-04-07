@@ -11,6 +11,15 @@ importers:
       dompurify:
         specifier: ^3.0.11
         version: 3.0.11
+      inversify:
+        specifier: ^6.0.2
+        version: 6.0.2
+      reflect-metadata:
+        specifier: ^0.2.2
+        version: 0.2.2
+      ws:
+        specifier: ^8.16.0
+        version: 8.16.0
     devDependencies:
       '@chromatic-com/storybook':
         specifier: ^1.2.25
@@ -36,6 +45,9 @@ importers:
       '@storybook/blocks':
         specifier: ^8.0.2
         version: 8.0.6(@types/react@18.2.74)(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/builder-vite':
+        specifier: ^8.0.6
+        version: 8.0.6(typescript@5.4.4)(vite@5.2.8)
       '@storybook/react':
         specifier: ^8.0.2
         version: 8.0.6(react-dom@18.2.0)(react@18.2.0)(typescript@5.4.4)
@@ -57,6 +69,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.2.22
         version: 18.2.24
+      '@types/ws':
+        specifier: ^8.5.10
+        version: 8.5.10
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.8)
@@ -4336,6 +4351,12 @@ packages:
       '@types/node': 20.12.5
       '@types/unist': 2.0.10
       '@types/vfile-message': 2.0.0
+    dev: true
+
+  /@types/ws@8.5.10:
+    resolution: {integrity: sha512-vmQSUcfalpIq0R9q7uTo2lXs6eGIpt9wtnLdMv9LVpIjCA/+ufZRozlVoVelIYixx1ugCBKDhn89vnsEGOCx9A==}
+    dependencies:
+      '@types/node': 20.12.5
     dev: true
 
   /@types/yargs-parser@21.0.3:
@@ -8807,6 +8828,10 @@ packages:
       side-channel: 1.0.6
     dev: true
 
+  /inversify@6.0.2:
+    resolution: {integrity: sha512-i9m8j/7YIv4mDuYXUAcrpKPSaju/CIly9AHK5jvCBeoiM/2KEsuCQTTP+rzSWWpLYWRukdXFSl6ZTk2/uumbiA==}
+    dev: false
+
   /ip@2.0.1:
     resolution: {integrity: sha512-lJUL9imLTNi1ZfXT+DU6rBBdbiKGBuay9B6xGSPVjUeQwaH1RIGqef8RZkUtHioLmSNpPR5M4HVKJGm1j8FWVQ==}
     dev: true
@@ -12683,6 +12708,10 @@ packages:
       strip-indent: 3.0.0
     dev: true
 
+  /reflect-metadata@0.2.2:
+    resolution: {integrity: sha512-urBwgfrvVP/eAyXx4hluJivBKzuEbSQs9rKWCrCkbSxNv8mxPcUZKeuoF3Uy4mJl3Lwprp6yy5/39VWigZ4K6Q==}
+    dev: false
+
   /reflect.getprototypeof@1.0.6:
     resolution: {integrity: sha512-fmfw4XgoDke3kdI6h4xcUz1dG8uaiv5q9gcEwLS4Pnth2kxT+GZ7YehS1JTMGBQmtV7Y4GFGbs2re2NqhdozUg==}
     engines: {node: '>= 0.4'}
@@ -15138,7 +15167,6 @@ packages:
         optional: true
       utf-8-validate:
         optional: true
-    dev: true
 
   /x-is-string@0.1.0:
     resolution: {integrity: sha512-GojqklwG8gpzOVEVki5KudKNoq7MbbjYZCbyWzEz7tyPA7eleiE0+ePwOWQQRb5fm86rD3S8Tc0tSFf3AOv50w==}

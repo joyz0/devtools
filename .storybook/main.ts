@@ -19,5 +19,13 @@ const config: StorybookConfig = {
   docs: {
     autodocs: 'tag',
   },
+  typescript: {
+    // 解决编译时 decorate parameters 报错问题
+    reactDocgen: 'react-docgen-typescript',
+  },
+  async viteFinal(config) {
+    const { mergeConfig } = await import('vite')
+    return mergeConfig(config, {})
+  },
 }
 export default config

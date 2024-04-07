@@ -1,0 +1,51 @@
+.devtool-anchor {
+  position: fixed;
+  user-select: none;
+  touch-action: none;
+
+  .devtool-panel-glowing {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-image: linear-gradient(45deg, #00dc82, #36e4da, #0047e1);
+    border-radius: 9999px;
+    opacity: 0;
+    filter: blur(60px);
+    transition: all 1s ease;
+    pointer-events: none;
+  }
+
+  &:hover {
+    .devtool-panel-glowing {
+      opacity: 0.6;
+    }
+  }
+}
+
+.devtool-panel {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid #efefef;
+  border-radius: 100px;
+  box-shadow: 2px -2px 8px rgb(128 128 128 / 10%);
+  cursor: pointer;
+  filter: saturate(0);
+  backdrop-filter: blur(10px);
+
+  /* transition: transform 0.4s ease; */
+
+  img {
+    width: 60%;
+    height: 60%;
+  }
+}
+
+.devtool-panel-vertical {
+  img {
+    transform: rotate(-90deg);
+  }
+}

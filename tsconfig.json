@@ -16,7 +16,7 @@
     "exactOptionalPropertyTypes": false,
     "useUnknownInCatchVariables": false,
     "forceConsistentCasingInFileNames": true,
-    "useDefineForClassFields": false,
+    "useDefineForClassFields": true,
 
     "jsx": "react-jsx",
     "preserveConstEnums": true,

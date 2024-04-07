@@ -1,17 +1,18 @@
+import path from 'path'
 import { defineConfig } from 'father'
 
 export default defineConfig({
-  // Bundless 构建模式
+  // Bundless 构建模式 transformer=babel
   esm: {
     input: 'src/client',
     output: 'dist/esm',
   },
-  // Bundless 构建模式
+  // Bundless 构建模式 transformer=esbuild
   cjs: {
     input: 'src/server',
     output: 'dist/cjs',
   },
-  // Bundle 构建模式
+  // Bundle 构建模式 transformer=babel
   umd: {
     name: 'fatherTemplate',
     entry: {
@@ -34,4 +35,8 @@ export default defineConfig({
     output: 'compiled',
     deps: {},
   },
+  alias: {
+    '@src': path.resolve(__dirname, 'src'),
+  },
+  sourcemap: true,
 })

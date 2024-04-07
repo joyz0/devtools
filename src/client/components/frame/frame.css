@@ -1,0 +1,19 @@
+.devtool-frame-container {
+  position: fixed;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.devtool-frame {
+  display: none;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgb(0 0 0 / 10%);
+  border-radius: 10px;
+  pointer-events: auto;
+
+  &.opened {
+    display: block;
+  }
+}
