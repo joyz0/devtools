@@ -27,6 +27,7 @@
 // function executeCommand(command: any) {
 //   ws.send(JSON.stringify({ action: 'exec-cmd', cmd: command }))
 // }
+import 'reflect-metadata'
 
 export { initContainer } from './IoC'
 export { EDGE_POSITION, IDENTIFIERS } from './components/base/constants'

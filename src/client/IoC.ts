@@ -1,5 +1,4 @@
 import { Container } from 'inversify'
-import 'reflect-metadata'
 import { DraggableService } from './components/base/services/draggableService'
 import { Panel } from './components/panel/panel'
 import { Frame } from './components/frame/frame'
