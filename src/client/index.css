@@ -1,0 +1,15 @@
+::placeholder {
+  color: gray;
+}
+
+img {
+  &.image {
+    background: red;
+  }
+}
+
+@media (resolution >= 2dppx) {
+  .image {
+    background: red;
+  }
+}

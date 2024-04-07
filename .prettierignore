@@ -1,0 +1,13 @@
+node_modules/
+.vscode/
+
+CHANGELOG.md
+dist/
+lib/
+es/
+out-build/
+temp/
+storybook-static/
+LICENSE.md
+pnpm-lock.yaml
+pnpm-workspace.yaml

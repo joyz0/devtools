@@ -1,0 +1,10 @@
+dist
+out-build
+examples
+__tests__
+__mocks__
+
+storybook-static
+node_modules
+*.log
+*.lock
