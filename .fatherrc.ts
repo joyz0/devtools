@@ -2,7 +2,11 @@ import path from 'path'
 import { defineConfig } from 'father'
 
 export default defineConfig({
-  // extraBabelPlugins: ['babel-plugin-transform-typescript-metadata'],
+  extraBabelPlugins: [
+    'babel-plugin-transform-typescript-metadata',
+    ['@babel/plugin-proposal-decorators', { legacy: true }],
+    // ['@babel/plugin-proposal-class-properties', { loose: true }],
+  ],
   // extraBabelPresets: [],
   // Bundless 构建模式 transformer=babel
   esm: {
@@ -33,7 +37,6 @@ export default defineConfig({
       config: true,
     },
     chainWebpack(config) {
-      console.log(1111, config)
       return config
     },
   },
