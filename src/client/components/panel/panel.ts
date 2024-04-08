@@ -6,6 +6,7 @@ import {
   Widget,
   type IWidget,
 } from '../base/dom'
+import { createSVG } from '../base/util'
 import {
   DRAG_DIRECTION,
   DraggableService,
@@ -61,9 +62,7 @@ class Panel extends Widget implements IPanel {
     panel.tabIndex = 0
     panel.setAttribute('role', 'button')
 
-    const img = document.createElement('img')
-    img.src = Icon
-    panel.appendChild(img)
+    panel.appendChild(createSVG(Icon))
 
     const glowing = document.createElement('div')
     glowing.classList.add('devtool-panel-glowing')

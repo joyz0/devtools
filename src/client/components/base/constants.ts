@@ -22,6 +22,7 @@ export enum EdgePosition {
   UNKNOWN = 'UNKNOWN',
 }
 
-export const SIDE_NAV = {
-  CodeTemplate: Symbol.for('CodeTemplate'),
+export const SideNavCodes = {
+  HOME: 'HOME',
+  CODE_TEMPLATE: 'CODE_TEMPLATE',
 }
