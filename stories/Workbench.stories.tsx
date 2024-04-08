@@ -1,4 +1,4 @@
-import { initContainer, EDGE_POSITION, IDENTIFIERS } from '../src/client'
+import { initContainer, EdgePosition, Identifiers } from '../src/client'
 import { useEffect, useRef } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { Workbench } from '../src/client/components/workbench/workbench'
@@ -10,10 +10,10 @@ function Wrapper() {
 
   useEffect(() => {
     if (container.current) {
-      const instance = IoC.get<Workbench>(IDENTIFIERS.Workbench)
+      const instance = IoC.get<Workbench>(Identifiers.Workbench)
       instance.initialize({
         container: container.current,
-        initialPosition: EDGE_POSITION.BOTTOM,
+        initialPosition: EdgePosition.BOTTOM,
         panelSize: 30,
       })
     }

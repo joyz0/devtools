@@ -10,12 +10,12 @@
   <body>
     <script>
       if (maycurDevtools) {
-        const { initContainer, EDGE_POSITION, IDENTIFIERS } = maycurDevtools
+        const { initContainer, EdgePosition, Identifiers } = maycurDevtools
         const IoC = initContainer()
-        const instance = IoC.get(IDENTIFIERS.Workbench)
+        const instance = IoC.get(Identifiers.Workbench)
         instance.initialize({
           container: document.body,
-          initialPosition: EDGE_POSITION.BOTTOM,
+          initialPosition: EdgePosition.BOTTOM,
           panelSize: 30,
         })
       }

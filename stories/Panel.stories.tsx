@@ -1,4 +1,4 @@
-import { initContainer, EDGE_POSITION, IDENTIFIERS } from '../src/client'
+import { initContainer, EdgePosition, Identifiers } from '../src/client'
 import { useEffect, useRef } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { Panel, type PanelOptions } from '../src/client/components/panel/panel'
@@ -10,7 +10,7 @@ function Wrapper(props: PanelOptions) {
 
   useEffect(() => {
     if (container.current) {
-      const instance = IoC.get<Panel>(IDENTIFIERS.Panel)
+      const instance = IoC.get<Panel>(Identifiers.Panel)
       instance.initialize({
         ...props,
         container: container.current,
@@ -27,15 +27,15 @@ function MultipleWrapper() {
 
   useEffect(() => {
     if (container.current) {
-      const instance1 = IoC.get<Panel>(IDENTIFIERS.Panel)
-      const instance2 = IoC.get<Panel>(IDENTIFIERS.Panel)
+      const instance1 = IoC.get<Panel>(Identifiers.Panel)
+      const instance2 = IoC.get<Panel>(Identifiers.Panel)
       instance1.initialize({
-        initialPosition: EDGE_POSITION.BOTTOM,
+        initialPosition: EdgePosition.BOTTOM,
         panelSize: 30,
         container: container.current,
       })
       instance2.initialize({
-        initialPosition: EDGE_POSITION.RIGHT,
+        initialPosition: EdgePosition.RIGHT,
         panelSize: 60,
         container: container.current,
       })
@@ -62,13 +62,13 @@ type Story = StoryObj<typeof meta>
 
 export const BottomPanel: Story = {
   render() {
-    return <Wrapper initialPosition={EDGE_POSITION.BOTTOM} panelSize={30} />
+    return <Wrapper initialPosition={EdgePosition.BOTTOM} panelSize={30} />
   },
 }
 
 export const RightPanel: Story = {
   render() {
-    return <Wrapper initialPosition={EDGE_POSITION.RIGHT} panelSize={60} />
+    return <Wrapper initialPosition={EdgePosition.RIGHT} panelSize={60} />
   },
 }
 

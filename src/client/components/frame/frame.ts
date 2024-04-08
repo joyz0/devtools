@@ -1,6 +1,6 @@
 import { inject, injectable } from 'inversify'
 import { Widget, type IWidget } from '../base/dom'
-import { EDGE_POSITION, IDENTIFIERS } from '../base/constants'
+import { EdgePosition, Identifiers } from '../base/constants'
 import { FrameContent } from './frameContent'
 import './frame.css'
 
@@ -10,7 +10,7 @@ interface FrameOptions {
 
 interface IFrame extends IWidget {
   toggleVisible(): void
-  moveFollow(target: HTMLElement, targetPostion: EDGE_POSITION): void
+  moveFollow(target: HTMLElement, targetPostion: EdgePosition): void
   renderContent(): void
 }
 
@@ -21,7 +21,7 @@ class Frame extends Widget implements IFrame {
   private _frameElement!: HTMLElement
 
   constructor(
-    @inject(IDENTIFIERS.FrameContent) private _frameContent: FrameContent,
+    @inject(Identifiers.FrameContent) private _frameContent: FrameContent,
   ) {
     super()
   }
@@ -72,7 +72,7 @@ class Frame extends Widget implements IFrame {
     }
   }
 
-  public moveFollow(target: HTMLElement, targetPostion: EDGE_POSITION) {
+  public moveFollow(target: HTMLElement, targetPostion: EdgePosition) {
     const targetBounding = target.getBoundingClientRect()
     const frameRect = this._element.getBoundingClientRect()
     const targetCenterCoords = {

@@ -1,4 +1,4 @@
-export const IDENTIFIERS = {
+export const Identifiers = {
   DraggableService: Symbol.for('DraggableService'),
   Panel: Symbol.for('Panel'),
   Frame: Symbol.for('Frame'),
@@ -6,7 +6,7 @@ export const IDENTIFIERS = {
   Workbench: Symbol.for('Workbench'),
 }
 
-export enum EDGE_POSITION {
+export enum EdgePosition {
   TOP_LEFT = 'TOP_LEFT',
   TOP = 'TOP',
   TOP_RIGHT = 'TOP_RIGHT',
@@ -20,4 +20,8 @@ export enum EDGE_POSITION {
   LEFT = 'LEFT',
   LEFT_TOP = 'LEFT_TOP',
   UNKNOWN = 'UNKNOWN',
+}
+
+export const SIDE_NAV = {
+  CodeTemplate: Symbol.for('CodeTemplate'),
 }

@@ -30,4 +30,4 @@
 import 'reflect-metadata'
 
 export { initContainer } from './IoC'
-export { EDGE_POSITION, IDENTIFIERS } from './components/base/constants'
+export { EdgePosition, Identifiers } from './components/base/constants'

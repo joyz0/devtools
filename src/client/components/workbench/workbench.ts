@@ -2,7 +2,7 @@ import { Widget, type IWidget } from '../base/dom'
 import { Panel, type PanelOptions } from '../panel/panel'
 import { Frame } from '../frame/frame'
 import { inject, injectable } from 'inversify'
-import { IDENTIFIERS } from '../base/constants'
+import { Identifiers } from '../base/constants'
 
 interface WorkbenchOptions extends PanelOptions {}
 interface IWorkbench extends IWidget {}
@@ -10,8 +10,8 @@ interface IWorkbench extends IWidget {}
 @injectable()
 class Workbench extends Widget implements IWorkbench {
   constructor(
-    @inject(IDENTIFIERS.Panel) private _panel: Panel,
-    @inject(IDENTIFIERS.Frame) private _frame: Frame,
+    @inject(Identifiers.Panel) private _panel: Panel,
+    @inject(Identifiers.Frame) private _frame: Frame,
   ) {
     super()
     const $body = document.body

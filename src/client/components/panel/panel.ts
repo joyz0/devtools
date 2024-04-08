@@ -1,5 +1,5 @@
 import { inject, injectable } from 'inversify'
-import { IDENTIFIERS, EDGE_POSITION } from '../base/constants'
+import { Identifiers, EdgePosition } from '../base/constants'
 import {
   addDisposableListener,
   EventType,
@@ -10,14 +10,14 @@ import {
   DRAG_DIRECTION,
   DraggableService,
 } from '../base/services/draggableService'
-import Icon from './icon.svg'
+import Icon from '../../assets/icon.svg'
 import './panel.css'
 
 export interface PanelOptions {
   container?: HTMLElement
-  initialPosition: EDGE_POSITION
+  initialPosition: EdgePosition
   panelSize: number
-  onDragging?: (element: HTMLElement, position: EDGE_POSITION) => void
+  onDragging?: (element: HTMLElement, position: EdgePosition) => void
   onClick?: () => void
   onRightClick?: (openInspector: boolean) => void
 }
@@ -31,13 +31,13 @@ class Panel extends Widget implements IPanel {
   private _options!: PanelOptions
   private offsetX = 0
   private offsetY = 0
-  private _panelPosition!: EDGE_POSITION
+  private _panelPosition!: EdgePosition
   private _panelElement!: HTMLElement
   private _glowingElement!: HTMLElement
   private _openInspector = false
 
   constructor(
-    @inject(IDENTIFIERS.DraggableService)
+    @inject(Identifiers.DraggableService)
     private _draggableService: DraggableService,
   ) {
     super()
@@ -46,7 +46,7 @@ class Panel extends Widget implements IPanel {
   public override initialize(options: PanelOptions) {
     this._options = Object.assign(
       {
-        initialPosition: EDGE_POSITION.BOTTOM,
+        initialPosition: EdgePosition.BOTTOM,
         panelSize: 30,
       },
       options,
@@ -77,10 +77,10 @@ class Panel extends Widget implements IPanel {
     const windowWidth = window.innerWidth
     const windowHeight = window.innerHeight
 
-    if (initialPosition === EDGE_POSITION.BOTTOM) {
+    if (initialPosition === EdgePosition.BOTTOM) {
       element.style.left = `${(windowWidth - panelSize) / 2}px`
       element.style.top = `${windowHeight - panelSize}px`
-    } else if (initialPosition === EDGE_POSITION.RIGHT) {
+    } else if (initialPosition === EdgePosition.RIGHT) {
       element.style.left = `${windowWidth - panelSize}px`
       element.style.top = `${(windowHeight - panelSize) / 2}px`
     }
@@ -119,7 +119,7 @@ class Panel extends Widget implements IPanel {
     return this._panelPosition
   }
 
-  private set panelPosition(value: EDGE_POSITION) {
+  private set panelPosition(value: EdgePosition) {
     this._panelPosition = value
     const element = this._panelElement
     const transformOffset = this._options.panelSize / 6
@@ -230,7 +230,7 @@ class Panel extends Widget implements IPanel {
       e,
       currentPanelPosition,
     )
-    if (nextPanelPosition === EDGE_POSITION.UNKNOWN) {
+    if (nextPanelPosition === EdgePosition.UNKNOWN) {
       // 如果为空，则取当前位置
       nextPanelPosition = currentPanelPosition
     } else {
@@ -259,11 +259,11 @@ class Panel extends Widget implements IPanel {
 
   /**
    * 预测panel经过鼠标拖拽后出现在edge的位置
-   * @returns EDGE_POSITION
+   * @returns EdgePosition
    */
   private _predictNextPanelPosition(
     e: MouseEvent,
-    currentPanelPosition: EDGE_POSITION,
+    currentPanelPosition: EdgePosition,
   ) {
     const coords =
       this._draggableService.calculateMouseElementRelativeCoordinates(
@@ -280,63 +280,63 @@ class Panel extends Widget implements IPanel {
       Math.abs(coords.y) > window.innerHeight / 3
 
     if (!shouldChange) {
-      return EDGE_POSITION.UNKNOWN
+      return EdgePosition.UNKNOWN
     }
 
     const mouseMotionVector =
       this._draggableService.dragContext.mouseMotionVector
 
     if (DRAG_DIRECTION.RIGHT === direction) {
-      if (currentPanelPosition === EDGE_POSITION.LEFT_TOP) {
-        return EDGE_POSITION.TOP_LEFT
+      if (currentPanelPosition === EdgePosition.LEFT_TOP) {
+        return EdgePosition.TOP_LEFT
       } else if (
-        currentPanelPosition === EDGE_POSITION.LEFT &&
+        currentPanelPosition === EdgePosition.LEFT &&
         mouseMotionVector === DRAG_DIRECTION.RIGHT
       ) {
-        return EDGE_POSITION.RIGHT
-      } else if (currentPanelPosition === EDGE_POSITION.LEFT_BOTTOM) {
-        return EDGE_POSITION.BOTTOM_LEFT
+        return EdgePosition.RIGHT
+      } else if (currentPanelPosition === EdgePosition.LEFT_BOTTOM) {
+        return EdgePosition.BOTTOM_LEFT
       }
     } else if (DRAG_DIRECTION.LEFT === direction) {
-      if (currentPanelPosition === EDGE_POSITION.RIGHT_TOP) {
-        return EDGE_POSITION.TOP_RIGHT
+      if (currentPanelPosition === EdgePosition.RIGHT_TOP) {
+        return EdgePosition.TOP_RIGHT
       } else if (
-        currentPanelPosition === EDGE_POSITION.RIGHT &&
+        currentPanelPosition === EdgePosition.RIGHT &&
         mouseMotionVector === DRAG_DIRECTION.LEFT
       ) {
-        return EDGE_POSITION.LEFT
-      } else if (currentPanelPosition === EDGE_POSITION.RIGHT_BOTTOM) {
-        return EDGE_POSITION.BOTTOM_RIGHT
+        return EdgePosition.LEFT
+      } else if (currentPanelPosition === EdgePosition.RIGHT_BOTTOM) {
+        return EdgePosition.BOTTOM_RIGHT
       }
     } else if (DRAG_DIRECTION.DOWN === direction) {
-      if (currentPanelPosition === EDGE_POSITION.TOP_LEFT) {
-        return EDGE_POSITION.LEFT_TOP
+      if (currentPanelPosition === EdgePosition.TOP_LEFT) {
+        return EdgePosition.LEFT_TOP
       } else if (
-        currentPanelPosition === EDGE_POSITION.TOP &&
+        currentPanelPosition === EdgePosition.TOP &&
         mouseMotionVector === DRAG_DIRECTION.DOWN
       ) {
-        return EDGE_POSITION.BOTTOM
-      } else if (currentPanelPosition === EDGE_POSITION.TOP_RIGHT) {
-        return EDGE_POSITION.RIGHT_TOP
+        return EdgePosition.BOTTOM
+      } else if (currentPanelPosition === EdgePosition.TOP_RIGHT) {
+        return EdgePosition.RIGHT_TOP
       }
     } else if (DRAG_DIRECTION.UP === direction) {
-      if (currentPanelPosition === EDGE_POSITION.BOTTOM_LEFT) {
-        return EDGE_POSITION.LEFT_BOTTOM
+      if (currentPanelPosition === EdgePosition.BOTTOM_LEFT) {
+        return EdgePosition.LEFT_BOTTOM
       } else if (
-        currentPanelPosition === EDGE_POSITION.BOTTOM &&
+        currentPanelPosition === EdgePosition.BOTTOM &&
         mouseMotionVector === DRAG_DIRECTION.UP
       ) {
-        return EDGE_POSITION.TOP
-      } else if (currentPanelPosition === EDGE_POSITION.BOTTOM_RIGHT) {
-        return EDGE_POSITION.RIGHT_BOTTOM
+        return EdgePosition.TOP
+      } else if (currentPanelPosition === EdgePosition.BOTTOM_RIGHT) {
+        return EdgePosition.RIGHT_BOTTOM
       }
     }
-    return EDGE_POSITION.UNKNOWN
+    return EdgePosition.UNKNOWN
   }
 
   /**
    * 判断panel当前在edge的位置
-   * @returns EDGE_POSITION
+   * @returns EdgePosition
    */
   private _checkPanelPosition() {
     const panelSize = this._options.panelSize
@@ -348,38 +348,38 @@ class Panel extends Widget implements IPanel {
     let panelPosition
     if (offsetLeft >= 0 && offsetTop === 0) {
       if (offsetLeft < windowWidth / 3) {
-        panelPosition = EDGE_POSITION.TOP_LEFT
+        panelPosition = EdgePosition.TOP_LEFT
       } else if (offsetLeft < (windowWidth * 2) / 3) {
-        panelPosition = EDGE_POSITION.TOP
+        panelPosition = EdgePosition.TOP
       } else {
-        panelPosition = EDGE_POSITION.TOP_RIGHT
+        panelPosition = EdgePosition.TOP_RIGHT
       }
     } else if (offsetLeft >= 0 && offsetTop === windowHeight - panelSize) {
       if (offsetLeft < windowWidth / 3) {
-        panelPosition = EDGE_POSITION.BOTTOM_LEFT
+        panelPosition = EdgePosition.BOTTOM_LEFT
       } else if (offsetLeft < (windowWidth * 2) / 3) {
-        panelPosition = EDGE_POSITION.BOTTOM
+        panelPosition = EdgePosition.BOTTOM
       } else {
-        panelPosition = EDGE_POSITION.BOTTOM_RIGHT
+        panelPosition = EdgePosition.BOTTOM_RIGHT
       }
     } else if (offsetLeft === 0 && offsetTop > 0) {
       if (offsetTop < windowHeight / 3) {
-        panelPosition = EDGE_POSITION.LEFT_TOP
+        panelPosition = EdgePosition.LEFT_TOP
       } else if (offsetTop < (windowHeight * 2) / 3) {
-        panelPosition = EDGE_POSITION.LEFT
+        panelPosition = EdgePosition.LEFT
       } else {
-        panelPosition = EDGE_POSITION.LEFT_BOTTOM
+        panelPosition = EdgePosition.LEFT_BOTTOM
       }
     } else if (offsetLeft === window.innerWidth - panelSize && offsetTop > 0) {
       if (offsetTop < windowHeight / 3) {
-        panelPosition = EDGE_POSITION.RIGHT_TOP
+        panelPosition = EdgePosition.RIGHT_TOP
       } else if (offsetTop < (windowHeight * 2) / 3) {
-        panelPosition = EDGE_POSITION.RIGHT
+        panelPosition = EdgePosition.RIGHT
       } else {
-        panelPosition = EDGE_POSITION.RIGHT_BOTTOM
+        panelPosition = EdgePosition.RIGHT_BOTTOM
       }
     } else {
-      panelPosition = EDGE_POSITION.TOP_LEFT
+      panelPosition = EdgePosition.TOP_LEFT
     }
     this.panelPosition = panelPosition
     return panelPosition
